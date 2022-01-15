@@ -22,6 +22,12 @@ public class ContactsListController {
     @Autowired
     private AuthenticatedUsers authenticatedUsers;
 
+    @GetMapping
+    public ResponseEntity getContacts(@RequestHeader("Authorization") String token){
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must request 'users' or 'groups'");
+    }
+
     @GetMapping("{type}")
     public ResponseEntity getContacts(@RequestHeader("Authorization") String token, @PathVariable("type") String type){
 
@@ -31,9 +37,6 @@ public class ContactsListController {
         ResultSet rs;
 
         User user = authenticatedUsers.hashMap.get(token);
-
-        if(user == null)
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("teste para ver se apagou");
 
         switch (type){
             case "users" -> {
@@ -49,7 +52,16 @@ public class ContactsListController {
                 }
             }
             case "groups" -> {
-                return ResponseEntity.ok("Olá Mundo");
+                try{
+                    rs = stmt.executeQuery("SELECT grupo.Nome FROM grupo, inclui WHERE (inclui.Grupo_ID_Grupo = grupo.ID_Grupo) AND inclui.Utilizador_Username = \"" + user.getUsername() + "\" AND Adicionado = 1;");
+                    while (rs.next()){ //query contactos
+                        reply.add(rs.getString(1));
+                    }
+                    return ResponseEntity.ok(reply);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(HttpStatus.CONFLICT).body("SQL query failed");
+                }
             }
         }
 
