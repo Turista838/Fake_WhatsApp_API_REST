@@ -50,6 +50,11 @@ public class AuthorizationFilter extends OncePerRequestFilter
             SecurityContextHolder.getContext().setAuthentication(uPAT);
         }
 
+        if(token != null && !authenticatedUsers.hashMap.containsKey(token)){
+            httpServletResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }
