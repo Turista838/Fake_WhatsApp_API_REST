@@ -1,8 +1,13 @@
 package MainSpring.Schedule;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import MainSpring.Model.AuthenticatedUsers;
+import MainSpring.Model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +20,21 @@ public class ScheduleTask {
     @Autowired
     private AuthenticatedUsers authenticatedUsers;
 
-    private static final Logger log = LoggerFactory.getLogger(ScheduleTask.class);
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-    @Scheduled(fixedRate = 10000) // 2 minutos - 120000
+    @Scheduled(fixedRate = 1000)
     public void reportCurrentTime() {
-        //log.info("The time is now {}", dateFormat.format(new Date()));
-        log.info("Lista de tokens:");
-        log.info(String.valueOf(authenticatedUsers.hashMap.keySet()));
-//        for(User u : lista.usersList){
-//            log.info(u.getUsername());
-//            log.info(u.getPassword());
-//        }
+        checkTwoMinutesPassed(authenticatedUsers.hashMap);
+    }
+
+    private void checkTwoMinutesPassed(HashMap<String, User> hashMap) {
+        Calendar time;
+        for (Map.Entry<String, User> entry : hashMap.entrySet()) {
+            time = GregorianCalendar.getInstance();
+            String token = entry.getKey();
+            User user = entry.getValue();
+            if(time.getTimeInMillis() - user.getLoggedIn().getTimeInMillis() > 120000) {
+                hashMap.remove(token);
+                System.out.println("removi um token");
+            }
+        }
     }
 }
