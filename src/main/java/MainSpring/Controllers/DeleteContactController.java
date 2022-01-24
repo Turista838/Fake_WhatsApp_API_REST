@@ -14,19 +14,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("delete")
+@RequestMapping("contact")
 public class DeleteContactController {
 
     @Autowired
     private AuthenticatedUsers authenticatedUsers;
 
-    @PutMapping
+    @DeleteMapping
     public ResponseEntity deleteContact(@RequestHeader("Authorization") String token){
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put delete/{contact to delete} to delete contact");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put contact/{contact to delete} to delete contact");
     }
 
-    @PutMapping("{contact}")
+    @DeleteMapping("{contact}")
     public ResponseEntity deleteContact(@RequestHeader("Authorization") String token, @PathVariable("contact") String contact){
 
         ArrayList<String> reply = new ArrayList<>();

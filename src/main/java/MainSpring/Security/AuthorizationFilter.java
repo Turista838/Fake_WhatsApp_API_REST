@@ -33,7 +33,7 @@ public class AuthorizationFilter extends OncePerRequestFilter
     {
         String token = httpServletRequest.getHeader("Authorization");
 
-        if(authenticatedUsers == null){ //https://stackoverflow.com/questions/32494398/unable-to-autowire-the-service-inside-my-authentication-filter-in-spring/32495757
+        if(authenticatedUsers == null){
             ServletContext servletContext = httpServletRequest.getServletContext();
             WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
             authenticatedUsers = webApplicationContext.getBean(AuthenticatedUsers.class);

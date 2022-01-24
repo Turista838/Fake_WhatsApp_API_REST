@@ -14,7 +14,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("edit")
+@RequestMapping("name")
 public class EditUserNameController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class EditUserNameController {
     @PutMapping
     public ResponseEntity editUsername(@RequestHeader("Authorization") String token){
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put edit/{new username} to edit your username");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put name/{new username} to edit your username");
     }
 
     @PutMapping("{newUsername}")
@@ -61,7 +61,7 @@ public class EditUserNameController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("SQL query failed");
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put edit/{new username} to edit your username");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("You must put name/{new username} to edit your username");
     }
 
 }

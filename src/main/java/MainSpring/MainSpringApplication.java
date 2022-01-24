@@ -47,4 +47,3 @@ public class MainSpringApplication {
 	}
 
 }
-	//http.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
