@@ -10,6 +10,6 @@ Project developed for 'Distributed Programming', a third year subject @ISEC
 ## Available URI's:
 
 | Function | Method | URI | Header | Body |
-| :---         |     :---:      |          ---: | :---         | 
-| git status   | git status     | git status    | git status    |
-| git diff     | git diff       | git diff      | git status    |
+| :---         |     :---:      |          ---: | :---         | :---         | 
+| git status   | git status     | git status    | git status    | git status    |
+| git diff     | git diff       | git diff      | git status    | git status    |
