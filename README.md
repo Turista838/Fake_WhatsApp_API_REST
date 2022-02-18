@@ -6,6 +6,7 @@ Project developed for 'Distributed Programming', a third year subject @ISEC
 
 * Needs the database schema provided in [Fake_WhatsApp](https://github.com/Turista838/Fake_WhatsApp)
 * Best used with [Postman](https://www.postman.com/)
+* Security token provided by the Authentication URI is valid for 2 minutes
 
 ## Available URI's:
 
