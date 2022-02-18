@@ -11,5 +11,5 @@ Project developed for 'Distributed Programming', a third year subject @ISEC
 
 | Function | Method | URI | Header | Body |
 | :---         | :---           | :---          | :---          | :---          | 
-| Authentication   | POST     | http://localhost:8080/session    | -    | {"username": "Zé", "password": "456"}    |
-| git diff     | git diff       | git diff      | git status    | git status    |
+| Authentication   | POST     | http://localhost:8080/session | -    | {"username": "Zé", "password": "456"}    |
+| Return Contacts     | GET       | http://localhost:8080/contacts/users | -   | *token provided by authentication*    |
